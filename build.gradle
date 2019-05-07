@@ -1,0 +1,108 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo.spring.io/libs-milestone/" }
+        maven { url "http://192.168.50.200:8083/nexus/content/groups/public/"}
+        jcenter { url "http://jcenter.bintray.com/"}
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.1.3.RELEASE')
+    }
+}
+
+subprojects {
+    group 'org.warless'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'distribution'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+
+    project.ext {
+        commonsLang3Version = '3.8'
+        commonsNetVersion = '3.6'
+        dom4jVersion = '2.1.1'
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo.spring.io/libs-milestone/" }
+        maven { url "http://192.168.50.200:8083/nexus/content/groups/public/"}
+        jcenter { url "http://jcenter.bintray.com/"}
+        mavenCentral()
+    }
+
+    dependencies {
+        compile(
+                'org.springframework.boot:spring-boot-starter',
+                "org.apache.commons:commons-lang3:${commonsLang3Version}",
+                "commons-net:commons-net:${commonsNetVersion}",
+                "org.dom4j:dom4j:${dom4jVersion}"
+        )
+        testCompile(
+                'org.springframework.boot:spring-boot-starter-test'
+        )
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src/main/java'
+            }
+        }
+    }
+
+//    task CreateDirs() << {
+//        file('build/package/libs').mkdirs()
+//        file('build/package/resources').mkdirs()
+//    }
+//
+//    task CopyLibs(type: Copy) {
+//        from('build/libs')
+//        into('build/package')
+//    }
+//
+//    task CopyResources(type: Copy) {
+//        from('src/main/resources')
+//        into('build/package/resources')
+//    }
+//
+//    task CopyDependencies(type: Copy) {
+//        from configurations.runtime
+//        into('build/package/libs')
+//    }
+//
+//    distributions {
+//        monitor {
+//            baseName = "${project.name}"
+//            contents {
+//                from { 'build/package' }
+//            }
+//        }
+//    }
+//
+//    task prepare(dependsOn:[
+//            'CreateDirs',
+//            'CopyLibs',
+//            'CopyResources',
+//            'CopyDependencies'
+//    ]){ }
+//
+//    monitorDistTar.dependsOn  'prepare'
+//    monitorDistTar.compression = Compression.GZIP
+//    monitorDistTar.extension = 'tar.gz'
+//
+//    task buildTar(dependsOn: [
+//            'build',
+//            monitorDistTar
+//    ]){}
+
+}

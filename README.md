@@ -1,1 +1,1 @@
-# Galares.rl
+# Xender: Data Transfer Tool
