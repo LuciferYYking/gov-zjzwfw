@@ -1,5 +1,0 @@
-rootProject.name = 'Xender'
-include 'xender-common'
-include 'xender-sender'
-include 'xender-receiver'
-
