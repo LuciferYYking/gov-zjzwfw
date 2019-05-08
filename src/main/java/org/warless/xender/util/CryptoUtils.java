@@ -1,9 +1,8 @@
-package org.warless.xender.utils;
+package org.warless.xender.util;
 
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +20,7 @@ public class CryptoUtils {
     public static final String SHA = "SHA";
     public static final String AES = "AES";
     public static final Integer IV_LENGTH = 16;
+    public static final String PADDING_CHAR = "\0";
 
     private static final String HEX_STR =  "0123456789ABCDEF";
 
@@ -96,7 +96,25 @@ public class CryptoUtils {
     }
 
     public static byte[] padding(byte[] bytes, int len) {
+        if (CommonUtils.isEmpty(bytes) || len < 1) {
+            return null;
+        }
+        int n = bytes.length % len;
+        for (int i = 0; i < n ; ++i) {
+        }
         return null;
+    }
+
+    public static String padding(String iv, int len) {
+        if (StringUtils.isBlank(iv) || len < 1) {
+            return null;
+        }
+        int n = iv.length() % len;
+        for (int i = 0; i < n ; ++i) {
+            iv += PADDING_CHAR;
+        }
+        System.err.println();
+        return iv;
     }
 
 }

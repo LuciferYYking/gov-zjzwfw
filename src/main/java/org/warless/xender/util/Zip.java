@@ -1,4 +1,4 @@
-package org.warless.xender.utils;
+package org.warless.xender.util;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -22,7 +22,7 @@ public class Zip {
         this.charset = charset;
     }
 
-    public void compress(String src, String dest) throws IOException {
+    public void pack(String src, String dest) throws IOException {
         ZipOutputStream zout = new ZipOutputStream( new FileOutputStream(dest), this.charset);
         List<String> files = CommonUtils.listFiles(src);
         for (String f : files) {
@@ -40,7 +40,7 @@ public class Zip {
         zout.close();
     }
 
-    public void decompress(String src, String dest) throws IOException {
+    public void unpack(String src, String dest) throws IOException {
         CommonUtils.mkdirs(dest);
         ZipInputStream zin = new ZipInputStream(new FileInputStream(src), this.charset);
         ZipEntry entry;

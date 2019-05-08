@@ -1,7 +1,7 @@
 package org.warless.xender.crypto;
 
-import org.warless.xender.utils.CommonUtils;
-import org.warless.xender.utils.CryptoUtils;
+import org.warless.xender.util.CommonUtils;
+import org.warless.xender.util.CryptoUtils;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -72,7 +72,7 @@ public class AES {
         File srcFile = new File(src);
         if (srcFile.exists() && srcFile.isFile()) {
             File destFile = new File(dest);
-            if (!destFile.getParentFile().exists()) {
+            if (destFile.getParentFile() != null && !destFile.getParentFile().exists()) {
                 destFile.getParentFile().mkdirs();
             }
             destFile.createNewFile();

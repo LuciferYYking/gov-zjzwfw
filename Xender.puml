@@ -1,5 +1,5 @@
 @startuml
-Sender -> Sender: Analyse Files(Fetch Data)
+Sender -> Sender: Analyse Files(Fetch Data) ?
 Sender -> Sender: Split Files
 Sender -> Sender: Create PCB File
 Sender -> Sender: Create Index File
@@ -12,6 +12,6 @@ Receiver <-> FTPServer: Download ZIP File
 Receiver -> Receiver: Decrypt With DES_CBC
 Receiver -> Receiver: Unzip ZIP File
 Receiver -> Receiver: Resolving Index File
-Receiver -> Receiver: Import data to database
+Receiver -> Receiver: Import data to database ?
 Receiver -> FTPServer: Delete ZIP file
 @enduml

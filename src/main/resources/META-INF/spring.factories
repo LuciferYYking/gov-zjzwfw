@@ -2,4 +2,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.warless.xender.autoconfigure.XenderAutoConfiguration,\
 org.warless.xender.autoconfigure.XmlAutoConfiguration,\
-org.warless.xender.autoconfigure.FTPAutoConfiguration
+org.warless.xender.autoconfigure.FtpAutoConfiguration

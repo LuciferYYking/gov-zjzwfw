@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Configuration;
  * @date : 2019/5/8
  */
 @Configuration
-public class FTPAutoConfiguration {
+public class FtpAutoConfiguration {
 }

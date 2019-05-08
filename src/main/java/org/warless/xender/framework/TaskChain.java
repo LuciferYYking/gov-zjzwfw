@@ -7,5 +7,8 @@ package org.warless.xender.framework;
  * @version : 1.0
  * @date : Created in 2019/5/8
  */
-public class TaskChain {
+public interface TaskChain {
+
+
+
 }

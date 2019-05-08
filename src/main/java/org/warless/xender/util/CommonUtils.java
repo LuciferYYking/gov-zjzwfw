@@ -1,6 +1,4 @@
-package org.warless.xender.utils;
-
-import org.springframework.util.CollectionUtils;
+package org.warless.xender.util;
 
 import java.io.File;
 import java.util.ArrayList;
