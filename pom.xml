@@ -15,19 +15,6 @@
     <packaging>jar</packaging>
     <description>Xender: Data Transfer Tool</description>
 
-    <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>beikServer</id>-->
-            <!--<name>admin</name>-->
-            <!--<url>http://192.168.50.200:8083/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>localServer</id>-->
-            <!--<name>admin</name>-->
-            <!--<url>http://192.168.50.200:8083/nexus/content/repositories/snapshots/</url>-->
-        <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
-
     <repositories>
         <repository>
             <id>localServer</id>
