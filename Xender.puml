@@ -1,4 +1,5 @@
 @startuml
+Sender -> Sender: Schedule e.g.: 5m/1000
 Sender -> Sender: Analyse Files(Fetch Data) ?
 Sender -> Sender: Split Files
 Sender -> Sender: Create PCB File
@@ -7,11 +8,12 @@ Sender -> Sender: Create ZIP File
 Sender -> Sender: Encrypt With DES_CBC
 Sender -> FTPServer: Upload ZIP File
 Sender -> Sender: Delete local ZIP file
+Sender -> Sender: Reset Schedule
 
 Receiver <-> FTPServer: Download ZIP File
 Receiver -> Receiver: Decrypt With DES_CBC
 Receiver -> Receiver: Unzip ZIP File
 Receiver -> Receiver: Resolving Index File
-Receiver -> Receiver: Import data to database ?
+Receiver -> Receiver: Import data to database(bak?) ?
 Receiver -> FTPServer: Delete ZIP file
 @enduml
