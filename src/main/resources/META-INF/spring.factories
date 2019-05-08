@@ -1,2 +1,5 @@
 # https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/htmlsingle/#boot-features-developing-auto-configuration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.warless.xender
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.warless.xender.autoconfigure.XenderAutoConfiguration,\
+org.warless.xender.autoconfigure.XmlAutoConfiguration,\
+org.warless.xender.autoconfigure.FTPAutoConfiguration

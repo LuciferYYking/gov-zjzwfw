@@ -11,19 +11,34 @@
     </parent>
     <groupId>org.warless</groupId>
     <artifactId>Xender</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.release.version}</version>
+    <packaging>jar</packaging>
     <description>Xender: Data Transfer Tool</description>
+
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>beikServer</id>-->
+            <!--<name>admin</name>-->
+            <!--<url>http://192.168.50.200:8083/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>localServer</id>-->
+            <!--<name>admin</name>-->
+            <!--<url>http://192.168.50.200:8083/nexus/content/repositories/snapshots/</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
     <repositories>
         <repository>
-            <id>kingstones</id>
-            <name>kingstones</name>
+            <id>localServer</id>
+            <name>admin</name>
             <url>http://192.168.50.200:8083/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 
     <properties>
         <java.version>1.8</java.version>
+        <project.release.version>1.0-SNAPSHOT</project.release.version>
         <commonsLang3.version>3.8</commonsLang3.version>
         <commonsNet.version>3.6</commonsNet.version>
         <dom4j.version>2.1.1</dom4j.version>
@@ -57,6 +72,15 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <project.release.version>1.0.0</project.release.version>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -85,4 +109,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
