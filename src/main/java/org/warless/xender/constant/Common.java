@@ -8,4 +8,5 @@ package org.warless.xender.constant;
  * @date : Created in 2019/5/8
  */
 public class Common {
+
 }

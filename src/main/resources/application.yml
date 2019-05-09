@@ -1,2 +1,9 @@
+
+xender:
+  ftp:
+    host: 127.0.0.1
+    username: ftpuser
+    password: 123456
+
 logging:
   path: logs/
