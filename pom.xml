@@ -29,12 +29,18 @@
         <commonsLang3.version>3.8</commonsLang3.version>
         <commonsNet.version>3.6</commonsNet.version>
         <dom4j.version>2.1.1</dom4j.version>
+        <druid.version>1.1.12</druid.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -50,6 +56,11 @@
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>sax</groupId>-->

@@ -1,18 +1,13 @@
-package org.warless.xender.autoconfigure;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+package org.warless.xender.constant;
 
 /**
  * Xender
  *
- * @author : yubb
+ * @author : Noa Swartz
  * @version : 1.0.0
- * @date : 2019/5/8
+ * @date : 2019/5/10
  */
-@Component
-@ConfigurationProperties(ignoreUnknownFields = false, prefix = "xender.ftp")
-public class FtpAutoConfiguration {
+public class ClientConfig {
 
     private String host;
     private int port;
@@ -26,48 +21,54 @@ public class FtpAutoConfiguration {
         return host;
     }
 
-    public void setHost(String host) {
+    public ClientConfig setHost(String host) {
         this.host = host;
+        return this;
     }
 
     public int getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public ClientConfig setPort(int port) {
         this.port = port;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public ClientConfig setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public ClientConfig setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getEncoding() {
         return encoding;
     }
 
-    public void setEncoding(String encoding) {
+    public ClientConfig setEncoding(String encoding) {
         this.encoding = encoding;
+        return this;
     }
 
     public int getFileType() {
         return fileType;
     }
 
-    public void setFileType(int fileType) {
+    public ClientConfig setFileType(int fileType) {
         this.fileType = fileType;
+        return this;
     }
 
     public boolean isUseProtocol() {
@@ -77,4 +78,5 @@ public class FtpAutoConfiguration {
     public void setUseProtocol(boolean useProtocol) {
         this.useProtocol = useProtocol;
     }
+
 }
