@@ -1,6 +1,5 @@
 package org.warless.xender.ftp;
 
-import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.warless.xender.autoconfigure.FtpAutoConfiguration;
@@ -26,52 +25,59 @@ public class ClientPool {
     @Autowired
     private FtpAutoConfiguration ftpAutoConfiguration;
 
-    private int initSize;
-    private int maxSize;
+    private int size;
     private ClientFactory clientFactory;
 
     public ClientPool() {
-        this(8, 16);
+        this(5);
     }
 
-    public ClientPool(int initSize, int maxSize) {
-        this.initSize = initSize;
-        this.maxSize = maxSize;
+    public ClientPool(int size) {
+        this.size = size;
         this.clientFactory = new FTPClientFactory();
-        CLIENTS = new ArrayList<>(initSize);
+        CLIENTS = new ArrayList<>(size);
     }
 
     @PostConstruct
     public void init() {
         ClientConfig config = new ClientConfig();
-        config.setHost(ftpAutoConfiguration.getHost()).setPort(21).setUsername("Anonymous").setPassword("").setFileType(FTPClient.BINARY_FILE_TYPE);
-        for (int i = 0; i < initSize; ++i) {
+        config.setHost(ftpAutoConfiguration.getHost())
+                .setPort(ftpAutoConfiguration.getPort())
+                .setUsername(ftpAutoConfiguration.getUsername())
+                .setPassword(ftpAutoConfiguration.getPassword())
+                .setFileType(ftpAutoConfiguration.getFileType());
+        for (int i = 0; i < size; ++i) {
             CLIENTS.add(clientFactory.createClient(config));
         }
     }
 
-    public Client getClient() {
-        return null;
+    public synchronized Client getClient() {
+        while (CLIENTS.isEmpty()) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return CLIENTS.remove(0);
+    }
+
+    public synchronized void releaseClient(Client client) {
+        CLIENTS.add(client);
+        this.notify();
     }
 
     @PreDestroy
     public void close() {
-        CLIENTS.forEach(Client::close);
+        CLIENTS.forEach(Client::freeClient);
     }
 
-    public int getInitSize() {
-        return initSize;
+    public int getSize() {
+        return size;
     }
 
-    public void setInitSize(int initSize) {
-        this.initSize = initSize;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
 }

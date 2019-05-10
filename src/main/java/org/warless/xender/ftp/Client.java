@@ -14,6 +14,8 @@ public interface Client {
 
     void download(String src, String dest);
 
-    void close();
+    void freeClient();
+
+    boolean isAlive();
 
 }
