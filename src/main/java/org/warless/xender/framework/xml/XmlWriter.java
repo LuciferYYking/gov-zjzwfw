@@ -1,4 +1,4 @@
-package org.warless.xender.xml;
+package org.warless.xender.framework.xml;
 
 /**
  * XmlWriter
