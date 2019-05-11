@@ -5,9 +5,9 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.junit.Test;
-import org.warless.xender.constant.Data;
-import org.warless.xender.constant.Dataset;
-import org.warless.xender.constant.Item;
+import org.warless.xender.framework.constant.Data;
+import org.warless.xender.framework.constant.Dataset;
+import org.warless.xender.framework.constant.Item;
 
 import java.util.ArrayList;
 import java.util.Iterator;

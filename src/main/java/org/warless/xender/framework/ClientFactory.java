@@ -1,6 +1,6 @@
 package org.warless.xender.framework;
 
-import org.warless.xender.constant.ClientConfig;
+import org.warless.xender.framework.constant.ClientConfig;
 
 /**
  * Xender

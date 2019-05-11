@@ -1,4 +1,4 @@
-package org.warless.xender.util;
+package org.warless.xender.utils;
 
 
 import org.apache.commons.lang3.StringUtils;

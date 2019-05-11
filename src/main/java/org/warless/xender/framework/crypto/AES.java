@@ -1,7 +1,7 @@
-package org.warless.xender.crypto;
+package org.warless.xender.framework.crypto;
 
-import org.warless.xender.util.CommonUtils;
-import org.warless.xender.util.CryptoUtils;
+import org.warless.xender.utils.CommonUtils;
+import org.warless.xender.utils.CryptoUtils;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;

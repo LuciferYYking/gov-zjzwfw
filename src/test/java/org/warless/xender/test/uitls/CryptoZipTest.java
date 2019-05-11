@@ -1,7 +1,7 @@
 package org.warless.xender.test.uitls;
 
 import org.junit.Test;
-import org.warless.xender.util.CryptoUtils;
+import org.warless.xender.utils.CryptoUtils;
 import org.warless.xender.framework.CryptoZip;
 import org.warless.xender.framework.zip.Zip;
 

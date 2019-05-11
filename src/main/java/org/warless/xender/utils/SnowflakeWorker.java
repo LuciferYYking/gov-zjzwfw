@@ -1,4 +1,4 @@
-package org.warless.xender.util;
+package org.warless.xender.utils;
 
 /**
  * SnowflakeWorker

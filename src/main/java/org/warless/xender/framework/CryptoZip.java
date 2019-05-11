@@ -1,7 +1,7 @@
 package org.warless.xender.framework;
 
-import org.warless.xender.crypto.AES;
-import org.warless.xender.util.CryptoUtils;
+import org.warless.xender.framework.crypto.AES;
+import org.warless.xender.utils.CryptoUtils;
 import org.warless.xender.framework.zip.Zip;
 
 import javax.crypto.Cipher;

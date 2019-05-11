@@ -10,7 +10,7 @@ import org.warless.xender.XenderApplication;
 import org.warless.xender.entity.Resource;
 import org.warless.xender.framework.Client;
 import org.warless.xender.mapper.ResourceMapper;
-import org.warless.xender.util.SnowflakeWorker;
+import org.warless.xender.utils.SnowflakeWorker;
 
 import java.util.ArrayList;
 import java.util.List;

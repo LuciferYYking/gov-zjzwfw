@@ -15,13 +15,13 @@
     <packaging>jar</packaging>
     <description>Xender: Data Transfer Tool</description>
 
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>localServer</id>-->
-            <!--<name>admin</name>-->
-            <!--<url>http://192.168.50.200:8083/nexus/content/groups/public/</url>-->
-        <!--</repository>-->
-    <!--</repositories>-->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <properties>
         <java.version>1.8</java.version>
@@ -38,6 +38,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -74,19 +78,6 @@
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>sax</groupId>-->
-            <!--<artifactId>sax</artifactId>-->
-            <!--<version>2.0.1</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

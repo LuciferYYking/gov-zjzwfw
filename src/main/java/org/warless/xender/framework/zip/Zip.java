@@ -1,6 +1,6 @@
 package org.warless.xender.framework.zip;
 
-import org.warless.xender.util.CommonUtils;
+import org.warless.xender.utils.CommonUtils;
 
 import java.io.*;
 import java.nio.charset.Charset;
