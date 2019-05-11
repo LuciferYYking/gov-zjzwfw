@@ -1,14 +1,16 @@
 package org.warless.xender.framework;
 
 /**
- * TaskChain
+ * Executor
  *
  * @author :  Noa Swartz
  * @version : 1.0
  * @date : Created in 2019/5/8
  */
-public interface TaskChain {
+public interface Executor {
 
+
+    void execute(ExecutorConfig config, ExecutorChain chain);
 
 
 }

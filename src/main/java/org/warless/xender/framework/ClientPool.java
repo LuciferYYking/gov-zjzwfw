@@ -1,4 +1,4 @@
-package org.warless.xender.ftp;
+package org.warless.xender.framework;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

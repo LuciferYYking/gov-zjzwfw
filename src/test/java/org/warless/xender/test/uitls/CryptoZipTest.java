@@ -2,8 +2,8 @@ package org.warless.xender.test.uitls;
 
 import org.junit.Test;
 import org.warless.xender.util.CryptoUtils;
-import org.warless.xender.util.CryptoZip;
-import org.warless.xender.util.Zip;
+import org.warless.xender.framework.CryptoZip;
+import org.warless.xender.framework.zip.Zip;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

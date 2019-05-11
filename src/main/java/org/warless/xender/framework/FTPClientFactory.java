@@ -1,9 +1,10 @@
-package org.warless.xender.ftp;
+package org.warless.xender.framework;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.warless.xender.constant.ClientConfig;
+import org.warless.xender.framework.ftp.FTP;
 
 import java.io.IOException;
 

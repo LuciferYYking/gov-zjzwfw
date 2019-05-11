@@ -1,4 +1,4 @@
-package org.warless.xender.ftp;
+package org.warless.xender.framework;
 
 
 /**

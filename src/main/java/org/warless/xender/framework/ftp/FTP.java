@@ -1,6 +1,7 @@
-package org.warless.xender.ftp;
+package org.warless.xender.framework.ftp;
 
 import org.apache.commons.net.ftp.FTPClient;
+import org.warless.xender.framework.Client;
 
 import java.io.*;
 
