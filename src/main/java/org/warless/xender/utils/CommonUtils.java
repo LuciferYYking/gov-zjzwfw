@@ -2,6 +2,7 @@ package org.warless.xender.utils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -29,6 +30,14 @@ public class CommonUtils {
 
     public static boolean isNotEmpty(Object[] arr) {
         return arr != null && arr.length != 0;
+    }
+
+    public static boolean isEmpty(Collection<?> collection) {
+        return collection == null || collection.isEmpty();
+    }
+
+    public static boolean isNotEmpty(Collection<?> collection) {
+        return collection != null && !collection.isEmpty();
     }
 
     public static List<String> listFiles(String path) {

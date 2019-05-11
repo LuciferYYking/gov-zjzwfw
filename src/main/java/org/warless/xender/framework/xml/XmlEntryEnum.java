@@ -1,4 +1,4 @@
-package org.warless.xender.framework.constant;
+package org.warless.xender.framework.xml;
 
 /**
  * Xender
@@ -17,7 +17,7 @@ public enum XmlEntryEnum {
     COLLECTION_PLACE("F010008", "", "数据采集地"),
     BEGIN_LINE("I010038", "１", "数据起始行，可选项，不填写默认为第１行"),
     CHARSET("I010039", "UTF-8", "可选项，默认为UTF-８，BCP文件编码格式（采用不带格式的编码方式，如：UTF-８无BOM）"),
-    BCP_FILE_PATH("H040003", "", "文件路径"),
+    BCP_FILE_PATH("H040003", "./", "文件路径"),
     BCP_FILE_NAME("H010020", "", "文件名"),
     LINE_COUNT("I010034", "", "记录行数");
 

@@ -2,7 +2,7 @@ package org.warless.xender.test.ftp;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Test;
-import org.warless.xender.framework.constant.ClientConfig;
+import org.warless.xender.framework.ftp.ClientConfig;
 import org.warless.xender.framework.Client;
 import org.warless.xender.framework.ClientFactory;
 import org.warless.xender.framework.FTPClientFactory;

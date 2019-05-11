@@ -1,4 +1,4 @@
-package org.warless.xender.framework.constant;
+package org.warless.xender.framework.ftp;
 
 /**
  * Xender

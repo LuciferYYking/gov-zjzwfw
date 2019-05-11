@@ -3,7 +3,7 @@ package org.warless.xender.framework;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.warless.xender.autoconfigure.FtpAutoConfiguration;
-import org.warless.xender.framework.constant.ClientConfig;
+import org.warless.xender.framework.ftp.ClientConfig;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

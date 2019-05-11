@@ -1,4 +1,9 @@
-package org.warless.xender.framework.constant;
+package org.warless.xender.framework.xml;
+
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.warless.xender.framework.XmlElement;
+
 
 /**
  * Item
@@ -7,9 +12,9 @@ package org.warless.xender.framework.constant;
  * @version : 1.0
  * @date : Created in 2019/5/9
  */
-public class Item {
+public class Item implements XmlElement {
 
-    public static final String TAB_NAME = "ITEM";
+    public static final String TAG_NAME = "ITEM";
     public static final String KEY_KEY = "key";
     public static final String VALUE_KEY = "val";
     public static final String REMARK_KEY = "rmk";
@@ -43,6 +48,15 @@ public class Item {
     public Item setRemark(String remark) {
         this.remark = remark;
         return this;
+    }
+
+    @Override
+    public Element transfer() {
+        Element root = DocumentHelper.createElement(TAG_NAME);
+        root.addAttribute(KEY_KEY, key);
+        root.addAttribute(VALUE_KEY, value);
+        root.addAttribute(REMARK_KEY, remark);
+        return root;
     }
 
 }

@@ -5,10 +5,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.junit.Test;
-import org.warless.xender.framework.constant.Data;
-import org.warless.xender.framework.constant.Dataset;
-import org.warless.xender.framework.constant.Item;
+import org.warless.xender.framework.xml.Data;
+import org.warless.xender.framework.xml.Dataset;
+import org.warless.xender.framework.xml.Item;
+import org.warless.xender.framework.xml.XmlWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -48,7 +50,7 @@ public class XmlReaderTest {
         }
         for (Iterator<Element> it = node.elementIterator(); it.hasNext();) {
             Element element = it.next();
-            if (Item.TAB_NAME.equals(element.getName())) {
+            if (Item.TAG_NAME.equals(element.getName())) {
                 Data data = (Data) res;
                 Item item = new Item();
                 item.setKey(element.attributeValue(Item.KEY_KEY))
@@ -79,6 +81,11 @@ public class XmlReaderTest {
                 test(element, dataset);
             }
         }
+    }
+
+    @Test
+    public void write() throws IOException {
+        XmlWriter.createXml();
     }
 
 }
