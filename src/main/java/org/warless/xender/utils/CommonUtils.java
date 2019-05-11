@@ -1,6 +1,6 @@
 package org.warless.xender.utils;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -64,6 +64,34 @@ public class CommonUtils {
         File destFile = new File(path);
         if (!destFile.exists()) {
             destFile.mkdirs();
+        }
+    }
+
+    public static void copy(String src, String dest) {
+        File file = new File(src);
+        System.err.println(file.getName());
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = new FileInputStream(src);
+            out = new FileOutputStream(dest + File.separator + file.getName());
+            byte[] buffer = new byte[2048];
+            int len;
+            while ((len =in.read(buffer)) != -1) {
+                out.write(buffer, 0, len);
+                out.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException ignored) {}
         }
     }
 

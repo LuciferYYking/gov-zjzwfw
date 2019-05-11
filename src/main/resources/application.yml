@@ -7,12 +7,18 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/xender?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&rewriteBatchedStatements=true&useAffectedRows=true&useSSL=false&requireSSL=false&serverTimezone=UTC
     username: root
     password: root
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
 
 mybatis:
   type-aliases-package: org.warless.xender.entity
   mapper-locations: classpath:mapper/*.xml
 
 xender:
+  workspace: F:/Xender/temp
+  file-dir: file
   ftp:
     host: 192.168.1.102
     port: 21
@@ -25,8 +31,6 @@ xender:
     pcb-size: 5000
     pcb-count: 2
     encoding: UTF-8
-
-
 
 logging:
   path: logs/
