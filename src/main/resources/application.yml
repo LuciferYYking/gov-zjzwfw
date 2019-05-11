@@ -20,6 +20,13 @@ xender:
     password:
     file-type: 2
     use-protocol: false
+  xml:
+    template-location: classpath:GAB_ZIP_INDEX.xml
+    pcb-size: 5000
+    pcb-count: 2
+    encoding: UTF-8
+
+
 
 logging:
   path: logs/

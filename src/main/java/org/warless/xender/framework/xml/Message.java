@@ -5,6 +5,7 @@ import org.dom4j.Element;
 import org.warless.xender.framework.XmlElement;
 import org.warless.xender.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,12 @@ public class Message implements XmlElement {
 
     public static final String TAG_NAME = "MESSAGE";
 
-    private List<Dataset> datasets;
+    private List<Dataset> datasets = new ArrayList<>();
+
+    public Message addDataset(Dataset dataset) {
+        this.datasets.add(dataset);
+        return this;
+    }
 
     public List<Dataset> getDatasets() {
         return datasets;

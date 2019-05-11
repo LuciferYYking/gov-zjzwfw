@@ -22,6 +22,16 @@ public class Item implements XmlElement {
     private String key;
     private String value;
     private String remark;
+    private String eng;
+    private String chn;
+
+    public Item() { }
+
+    public Item(String key, String value, String remark) {
+        this.key = key;
+        this.value = value;
+        this.remark = remark;
+    }
 
     public String getKey() {
         return key;
@@ -47,6 +57,24 @@ public class Item implements XmlElement {
 
     public Item setRemark(String remark) {
         this.remark = remark;
+        return this;
+    }
+
+    public String getEng() {
+        return eng;
+    }
+
+    public Item setEng(String eng) {
+        this.eng = eng;
+        return this;
+    }
+
+    public String getChn() {
+        return chn;
+    }
+
+    public Item setChn(String chn) {
+        this.chn = chn;
         return this;
     }
 

@@ -2,8 +2,6 @@ package org.warless.xender.framework;
 
 import org.dom4j.Element;
 
-import java.util.List;
-
 /**
  * XmlElement
  *

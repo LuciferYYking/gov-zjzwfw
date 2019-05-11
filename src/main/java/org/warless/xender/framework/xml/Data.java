@@ -5,6 +5,7 @@ import org.dom4j.Element;
 import org.warless.xender.framework.XmlElement;
 import org.warless.xender.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +19,18 @@ public class Data implements XmlElement {
 
     public static final String TAG_NAME = "DATA";
 
-    private List<Item> items;
-    private List<Dataset> datasets;
+    private List<Item> items = new ArrayList<>();
+    private List<Dataset> datasets = new ArrayList<>(4);
+
+    public Data addItem(Item item) {
+        this.items.add(item);
+        return this;
+    }
+
+    public Data addDataset(Dataset dataset) {
+        this.datasets.add(dataset);
+        return this;
+    }
 
     public List<Item> getItems() {
         return items;

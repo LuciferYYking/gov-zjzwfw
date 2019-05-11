@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MESSAGE>
-    <DATASET name="WA_COMMON_010017" rmk="数据文件索引信息">
+    <DATASET name="WA_COMMON_010017" ver="1.0" rmk="数据文件索引信息">
         <DATA>
             <DATASET name="WA_COMMON_010013" rmk="BCP文件格式信息">
                 <DATA>

@@ -85,7 +85,7 @@ public class XmlReaderTest {
 
     @Test
     public void write() throws IOException {
-        XmlWriter.createXml();
+
     }
 
 }
