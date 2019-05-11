@@ -14,6 +14,7 @@ public interface ExecutorChain {
     default ExecutorChain setExecutor(Executor executor) {
         return this;
     }
+
     default ExecutorChain setNextChain(ExecutorChain nextChain) {
         return this;
     }

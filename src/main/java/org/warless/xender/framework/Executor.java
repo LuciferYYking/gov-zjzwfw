@@ -9,8 +9,6 @@ package org.warless.xender.framework;
  */
 public interface Executor {
 
-
     void execute(ExecutorConfig config, ExecutorChain chain);
-
 
 }
