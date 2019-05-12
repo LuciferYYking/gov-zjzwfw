@@ -15,8 +15,10 @@ public class XenderExecutorChain implements ExecutorChain {
     protected Executor executor;
     protected ExecutorChain nextChain;
 
-    public XenderExecutorChain() {
+    public XenderExecutorChain() { }
 
+    public XenderExecutorChain(Executor executor) {
+        this.executor = executor;
     }
 
 
@@ -37,7 +39,7 @@ public class XenderExecutorChain implements ExecutorChain {
         return this;
     }
 
-    public ExecutorChain getNextChain() {
+    public ExecutorChain getNextChain(XenderExecutorChain xenderExecutorChain) {
         return nextChain;
     }
 
