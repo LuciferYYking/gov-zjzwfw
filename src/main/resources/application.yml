@@ -19,6 +19,8 @@ mybatis:
 xender:
   workspace: F:/Xender/temp
   file-dir: file
+  crypto-key: K2u)1@33
+  crypto-ivkey: 5i5%q+1x
   ftp:
     host: 192.168.1.102
     port: 21

@@ -16,6 +16,8 @@ public class XenderAutoConfiguration {
 
     private String workspace;
     private String fileDir;
+    private String cryptoKey;
+    private String cryptoIvkey;
 
     public String getWorkspace() {
         return workspace;
@@ -31,5 +33,21 @@ public class XenderAutoConfiguration {
 
     public void setFileDir(String fileDir) {
         this.fileDir = fileDir;
+    }
+
+    public String getCryptoKey() {
+        return cryptoKey;
+    }
+
+    public void setCryptoKey(String cryptoKey) {
+        this.cryptoKey = cryptoKey;
+    }
+
+    public String getCryptoIvkey() {
+        return cryptoIvkey;
+    }
+
+    public void setCryptoIvkey(String cryptoIvkey) {
+        this.cryptoIvkey = cryptoIvkey;
     }
 }

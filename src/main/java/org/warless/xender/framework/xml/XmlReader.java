@@ -49,8 +49,6 @@ public class XmlReader {
         return doc.getRootElement();
     }
 
-
-
     public void parse(Element node, XmlElement xmlElement) {
         if (node == null || node.elements().size() < 1) {
             return;

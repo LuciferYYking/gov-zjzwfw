@@ -63,6 +63,8 @@ public class XenderServiceImpl implements XenderService {
         config.setMaxSize(xmlAutoConfiguration.getPcbSize());
         config.setClientPool(clientPool);
         config.setTemplatePath(xmlAutoConfiguration.getTemplateLocation());
+        config.setCryptoIvkey(xenderAutoConfiguration.getCryptoIvkey());
+        config.setCryptoKey(xenderAutoConfiguration.getCryptoKey());
         senderChain.execute(config);
         return "Upload OK.";
     }

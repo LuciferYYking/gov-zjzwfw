@@ -37,17 +37,4 @@ public class XmlWriter {
         return message;
     }
 
-    public static void createXml() throws IOException {
-
-    }
-
-
-    public Message createMessage() {
-        Message message = new Message();
-        return message;
-    }
-
-
-
-
 }

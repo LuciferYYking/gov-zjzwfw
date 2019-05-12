@@ -26,7 +26,7 @@ public class ZipExecutor implements Executor {
         String src = config.getWorkspace();
         String dest = config.getWorkspace() + File.separator + ZIP_NAME;
         Zip zip = new Zip(StandardCharsets.UTF_8);
-        CryptoZip cryptoZip = new CryptoZip(zip, "1234567890123456", "1234567891234560");
+        CryptoZip cryptoZip = new CryptoZip(zip, config.getCryptoKey(), config.getCryptoIvkey());
         try {
             cryptoZip.compress(src, dest);
         } catch (IOException e) {

@@ -20,6 +20,8 @@ public class ExecutorConfig {
     private String zipName;
     private String workspace;
     private String fileDir;
+    private String cryptoKey;
+    private String cryptoIvkey;
     private Constants.DatasetType datasetType;
     private List<String> pcbFileNames;
     private List<Resource> resourceList;
@@ -139,5 +141,21 @@ public class ExecutorConfig {
 
     public void setZipPath(String zipPath) {
         this.zipPath = zipPath;
+    }
+
+    public String getCryptoKey() {
+        return cryptoKey;
+    }
+
+    public void setCryptoKey(String cryptoKey) {
+        this.cryptoKey = cryptoKey;
+    }
+
+    public String getCryptoIvkey() {
+        return cryptoIvkey;
+    }
+
+    public void setCryptoIvkey(String cryptoIvkey) {
+        this.cryptoIvkey = cryptoIvkey;
     }
 }
