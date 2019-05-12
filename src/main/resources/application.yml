@@ -36,13 +36,3 @@ xender:
 
 logging:
   path: logs/
-
-# @Value("${xender.ftp.host:127.0.0.1}")
-# private String host;
-# @Value("${xender.ftp.port:21}")
-# private int port;
-# @Value("${xender.ftp.username:Anonymous}")
-# private String username;
-# @Value("${xender.ftp.password:}")
-
-# private String password;
