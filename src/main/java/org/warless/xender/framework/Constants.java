@@ -1,4 +1,4 @@
-package org.warless.xender.framework.xml;
+package org.warless.xender.framework;
 
 /**
  * Constants
@@ -47,14 +47,9 @@ public class Constants {
 
     }
 
-    public static enum XmlLevelEnum {
+    public static enum DatasetType {
         /***/
-        L1,
-        L2,
-        L3,
-        L4,
-        L5,
-        L6
+        INFO, FILE, LOG
     }
 
 }

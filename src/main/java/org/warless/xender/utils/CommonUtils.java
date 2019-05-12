@@ -69,7 +69,6 @@ public class CommonUtils {
 
     public static void copy(String src, String dest) {
         File file = new File(src);
-        System.err.println(file.getName());
         InputStream in = null;
         OutputStream out = null;
         try {

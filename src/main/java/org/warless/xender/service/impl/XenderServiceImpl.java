@@ -10,9 +10,11 @@ import org.warless.xender.autoconfigure.FtpAutoConfiguration;
 import org.warless.xender.autoconfigure.XenderAutoConfiguration;
 import org.warless.xender.autoconfigure.XmlAutoConfiguration;
 import org.warless.xender.entity.Resource;
-import org.warless.xender.framework.Client;
-import org.warless.xender.framework.ClientPool;
-import org.warless.xender.framework.CryptoZip;
+import org.warless.xender.framework.*;
+import org.warless.xender.framework.executors.FTPExecutor;
+import org.warless.xender.framework.executors.PrepareExecutor;
+import org.warless.xender.framework.executors.XmlExecutor;
+import org.warless.xender.framework.executors.ZipExecutor;
 import org.warless.xender.framework.xml.*;
 import org.warless.xender.framework.zip.Zip;
 import org.warless.xender.mapper.ResourceMapper;
@@ -55,89 +57,122 @@ public class XenderServiceImpl implements XenderService {
             ++page;
         }
         String fileDir = xenderAutoConfiguration.getWorkspace() + File.separator + xenderAutoConfiguration.getFileDir();
-        File file = new File(fileDir);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        Dataset struct = new Dataset("WA_COMMON_010015", "BCP文件数据结构");
-        Data bcpData = new Data();
-        bcpData.setItems(new ArrayList<Item>(){{
-            add(new Item("WY0001", "type", "类型"));
-            add(new Item("WY0002", "value", "内容"));
-            add(new Item("WY0003", "path", "文件路径"));
-        }});
-        struct.addData(bcpData);
-        Dataset info = new Dataset("WA_COMMON_010014", "BCP数据文件信息");
 
-        for (int i = 0; i < page ; ++i) {
-            int begin = i * pageSize;
-            int end = i == page - 1 ? begin + mod : begin + pageSize;
-            List<Resource> subList = resourceList.subList(begin, end);
-            String pcbName = fileName + "-" + i +".bcp";
-            String path = xenderAutoConfiguration.getWorkspace() + File.separator + pcbName;
-            try {
-                OutputStream out = new FileOutputStream(path);
-                subList.forEach(res -> {
-                    String line = res.getType() + "\t" + res.getContent() + "\t" + res.getPath() + "\n";
-                    try {
-                        out.write(line.getBytes(StandardCharsets.UTF_8));
-                        out.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    CommonUtils.copy(res.getPath(), fileDir);
-                });
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Data data = new Data();
-            data.setItems(new ArrayList<Item>() {{
-                Item item0 = new Item();
-                item0.setKey(Constants.XmlEntryEnum.BCP_FILE_PATH.getKey())
-                        .setValue("./")
-                        .setRemark(Constants.XmlEntryEnum.BCP_FILE_PATH.getRemark());
-                add(item0);
+        ExecutorConfig config = new ExecutorConfig();
+        config.setWorkspace(xenderAutoConfiguration.getWorkspace());
+        config.setFileDir(xenderAutoConfiguration.getFileDir());
+        config.setDatasetType(Constants.DatasetType.FILE);
+        config.setResourceList(resourceList);
+        config.setMaxSize(xmlAutoConfiguration.getPcbSize());
+        config.setClientPool(clientPool);
+        config.setTemplatePath(xmlAutoConfiguration.getTemplateLocation());
 
-                Item item1 = new Item();
-                item1.setKey(Constants.XmlEntryEnum.BCP_FILE_NAME.getKey())
-                        .setValue(pcbName)
-                        .setRemark(Constants.XmlEntryEnum.BCP_FILE_NAME.getRemark());
-                add(item1);
+        ExecutorChain chain = new XenderExecutorChain();
+        chain.setExecutor(new PrepareExecutor());
 
-                Item item2 = new Item();
-                item2.setKey(Constants.XmlEntryEnum.LINE_COUNT.getKey())
-                        .setValue((end - begin) + "")
-                        .setRemark(Constants.XmlEntryEnum.LINE_COUNT.getRemark());
-                add(item2);
-            }});
-            info.addData(data);
-        }
-        try {
-            Message message = XmlWriter.getTemplate(xmlAutoConfiguration.getTemplateLocation());
-            Data data = message.getDatasets().get(0).getDatas().get(0).getDatasets().get(0).getDatas().get(0);
-            data.addDataset(info);
-            data.addDataset(struct);
-            Document document = DocumentHelper.createDocument();
-            document.add(message.transfer());
-            OutputFormat format = OutputFormat.createPrettyPrint();
-            XMLWriter writer = new XMLWriter(new FileWriter(xenderAutoConfiguration.getWorkspace() + File.separator + "GAB_ZIP_INDEX.xml"), format);
-            writer.write(document);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String src = xenderAutoConfiguration.getWorkspace();
-        String dest = xenderAutoConfiguration.getWorkspace() + File.separator + "45646546.zip";
-        Zip zip = new Zip(StandardCharsets.UTF_8);
-        CryptoZip cryptoZip = new CryptoZip(zip, "1234567890123456", "1234567891234560");
-        try {
-            cryptoZip.compress(src, dest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Client ftp = clientPool.getClient();
-        ftp.upload(dest, "\\45646546.zip");
+        XenderExecutorChain chain1 = new XenderExecutorChain();
+        chain1.setExecutor(new XmlExecutor());
+
+        XenderExecutorChain chain2 = new XenderExecutorChain();
+        chain2.setExecutor(new ZipExecutor());
+
+        XenderExecutorChain chain3 = new XenderExecutorChain();
+
+        chain3.setExecutor(new FTPExecutor());
+
+        chain.setNextChain(chain1);
+        chain1.setNextChain(chain2);
+        chain2.setNextChain(chain3);
+
+        chain.execute(config);
+//
+//        File file = new File(fileDir);
+//        if (!file.exists()) {
+//            file.mkdirs();
+//        }
+//        Dataset struct = new Dataset("WA_COMMON_010015", "BCP文件数据结构");
+//        Data bcpData = new Data();
+//        bcpData.setItems(new ArrayList<Item>(){{
+//            add(new Item("WY0001", "type", "类型"));
+//            add(new Item("WY0002", "value", "内容"));
+//            add(new Item("WY0003", "path", "文件路径"));
+//        }});
+//        struct.addData(bcpData);
+//        Dataset info = new Dataset("WA_COMMON_010014", "BCP数据文件信息");
+//
+//        for (int i = 0; i < page ; ++i) {
+//            int begin = i * pageSize;
+//            int end = i == page - 1 ? begin + mod : begin + pageSize;
+//            List<Resource> subList = resourceList.subList(begin, end);
+//            String pcbName = fileName + "-" + i +".bcp";
+//            String path = xenderAutoConfiguration.getWorkspace() + File.separator + pcbName;
+//            try {
+//                OutputStream out = new FileOutputStream(path);
+//                subList.forEach(res -> {
+//                    String line = res.getType() + "\t" + res.getContent() + "\t" + res.getPath() + "\n";
+//                    try {
+//                        out.write(line.getBytes(StandardCharsets.UTF_8));
+//                        out.flush();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    CommonUtils.copy(res.getPath(), fileDir);
+//                });
+//                out.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Data data = new Data();
+//            data.setItems(new ArrayList<Item>() {{
+//                Item item0 = new Item();
+//                item0.setKey(Constants.XmlEntryEnum.BCP_FILE_PATH.getKey())
+//                        .setValue("./")
+//                        .setRemark(Constants.XmlEntryEnum.BCP_FILE_PATH.getRemark());
+//                add(item0);
+//
+//                Item item1 = new Item();
+//                item1.setKey(Constants.XmlEntryEnum.BCP_FILE_NAME.getKey())
+//                        .setValue(pcbName)
+//                        .setRemark(Constants.XmlEntryEnum.BCP_FILE_NAME.getRemark());
+//                add(item1);
+//
+//                Item item2 = new Item();
+//                item2.setKey(Constants.XmlEntryEnum.LINE_COUNT.getKey())
+//                        .setValue((end - begin) + "")
+//                        .setRemark(Constants.XmlEntryEnum.LINE_COUNT.getRemark());
+//                add(item2);
+//            }});
+//            info.addData(data);
+//        }
+//
+//
+//        try {
+//            Message message = XmlWriter.getTemplate(xmlAutoConfiguration.getTemplateLocation());
+//            Data data = message.getDatasets().get(0).getDatas().get(0).getDatasets().get(0).getDatas().get(0);
+//            data.addDataset(info);
+//            data.addDataset(struct);
+//            Document document = DocumentHelper.createDocument();
+//            document.add(message.transfer());
+//            OutputFormat format = OutputFormat.createPrettyPrint();
+//            XMLWriter writer = new XMLWriter(new FileWriter(xenderAutoConfiguration.getWorkspace() + File.separator + "GAB_ZIP_INDEX.xml"), format);
+//            writer.write(document);
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        String src = xenderAutoConfiguration.getWorkspace();
+//        String dest = xenderAutoConfiguration.getWorkspace() + File.separator + "45646546.zip";
+//        Zip zip = new Zip(StandardCharsets.UTF_8);
+//        CryptoZip cryptoZip = new CryptoZip(zip, "1234567890123456", "1234567891234560");
+//        try {
+//            cryptoZip.compress(src, dest);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Client ftp = clientPool.getClient();
+//        ftp.upload(dest, "\\45646546.zip");
         return "Upload OK.";
     }
 

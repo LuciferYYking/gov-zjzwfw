@@ -1,6 +1,8 @@
 package org.warless.xender.framework;
 
 
+import org.warless.xender.framework.executors.*;
+
 /**
  * XenderExecutorChain
  *
@@ -13,9 +15,16 @@ public class XenderExecutorChain implements ExecutorChain {
     protected Executor executor;
     protected ExecutorChain nextChain;
 
+    public XenderExecutorChain() {
+
+    }
+
+
     public Executor getExecutor() {
         return executor;
     }
+
+
 
     @Override
     public void execute(ExecutorConfig config) {
