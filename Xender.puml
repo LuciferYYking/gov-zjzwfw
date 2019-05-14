@@ -1,19 +1,30 @@
 @startuml
-Sender -> Sender: Schedule e.g.: 5m/1000
-Sender -> Sender: Analyse Files(Fetch Data) ?
-Sender -> Sender: Split Files
-Sender -> Sender: Create PCB File
-Sender -> Sender: Create Index File
-Sender -> Sender: Create ZIP File
-Sender -> Sender: Encrypt With DES_CBC
-Sender -> FTPServer: Upload ZIP File
-Sender -> Sender: Delete local ZIP file
-Sender -> Sender: Reset Schedule
+participant Sender
+participant FGAP
+participant Receiver
+actor Worker
 
-Receiver <-> FTPServer: Download ZIP File
-Receiver -> Receiver: Decrypt With DES_CBC
-Receiver -> Receiver: Unzip ZIP File
-Receiver -> Receiver: Resolving Index File
-Receiver -> Receiver: Import data to database(bak?) ?
-Receiver -> FTPServer: Delete ZIP file
+alt upload case
+    Sender -> Sender: Fetch Data
+    Sender -> Sender: Split Data
+    Sender -> Sender: Create PCB File
+    Sender -> Sender: Create Index File
+    Sender -> Sender: Create ZIP File
+    Sender -> Sender: Encrypt With DES_CBC
+    Sender -> FGAP: Upload ZIP File
+    Sender -> Sender: Write record to db
+    Sender -> Sender: Delete local overdue ZIP file(Schedule)
+end
+alt download case
+    Receiver <-> FGAP: Download ZIP File
+    Receiver -> Receiver: Decrypt With DES_CBC
+    Receiver -> Receiver: Unzip ZIP File
+    Receiver -> Receiver: Resolving Index File
+    Receiver -> Receiver: Import data to database(bak?) ?
+    Receiver -> FGAP: Delete ZIP file
+else some kind of failure
+    Receiver -> Worker: notify
+    Worker -> Sender: notify
+    Sender -> FGAP: Retry upload zip file
+end
 @enduml
