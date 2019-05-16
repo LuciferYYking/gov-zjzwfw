@@ -3,6 +3,7 @@ package org.warless.xender.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -93,6 +94,24 @@ public class CryptoUtils {
 
     public static String encodeWithMD5(String content) {
         return encodeWithMD5(content, "");
+    }
+
+    public static String SHA256(String path) {
+        byte[] partialHash = null;
+        try {
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] buffer = new byte[2048];
+            int read;
+            while ((read = bis.read(buffer)) != -1) {
+                messageDigest.update(buffer, 0, read);
+            }
+            bis.close();
+            partialHash = messageDigest.digest();
+        } catch (NoSuchAlgorithmException | IOException e) {
+            e.printStackTrace();
+        }
+        return bytesToHexString(partialHash);
     }
 
     public static byte[] padding(byte[] bytes, int len) {
