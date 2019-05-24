@@ -1,5 +1,6 @@
 # Xender: Data Transfer Tool
 
+# Kali Linux iptables config
 ## /etc/init.d/iptables
 ```shell
 #!/bin/bash
