@@ -1,0 +1,50 @@
+plugins {
+    id "java-gradle-plugin"
+    id 'maven-publish'
+}
+
+'poseidon-framework'
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
+            "io.spring.gradle:dependency-management-plugin:$dependencyManagementVersion"
+    )
+}
+
+gradlePlugin{
+    plugins {
+        poseidonBootPlugin {
+            id = "com.unittec.poseidon-boot"
+            implementationClass = 'com.unittec.poseidon.gradle.PoseidonBootPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId 'poseidon-gradle'
+            version "$version"
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}

@@ -1,0 +1,39 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                afterEvaluate {
+                    name = project.description
+                    description = project.description
+                }
+                url = 'https://github.com/vbintx/matrix'
+                organization {
+                    name = 'UniTTEC'
+                    url = 'https://gitlab.example.com/unittec/poseidon'
+                }
+                developers {
+                    developer {
+                        id = "bingdyee"
+                        name = "yubinbin"
+                        email = "yubinbin@unittec.com"
+                    }
+                }
+                issueManagement {
+                    system = 'GitHub Issues'
+                    url = 'https://gitlab.example.com/unittec/poseidon/issues'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}
