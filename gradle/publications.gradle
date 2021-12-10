@@ -1,0 +1,50 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                afterEvaluate {
+                    name = project.description
+                    description = project.description
+                }
+                url = 'https://github.com/bingdyee/gov-zjzwfw'
+                organization {
+                    name = 'RechaoX'
+                    url = 'https://github.com/rechaox'
+                }
+                developers {
+                    developer {
+                        id = 'bingdyee'
+                        name = 'Bing D. Yee'
+                        email = 'bingdyee@gmail.com'
+                    }
+                }
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE.txt-2.0'
+                        distribution = 'repo'
+                    }
+                }
+                issueManagement {
+                    system = 'GitHub Issues'
+                    url = 'https://github.com/bingdyee/scrum-boot/issues'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "$buildDir/repos"
+        }
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            allowInsecureProtocol = true
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}

@@ -54,7 +54,10 @@ configure(allprojects) { project ->
 
 configure(subprojects) { project ->
 
+    apply from: "$rootDir/gradle/publications.gradle"
+
     plugins.withType(JavaPlugin) {
+
         configurations {
             compileOnly {
                 extendsFrom annotationProcessor
@@ -67,9 +70,31 @@ configure(subprojects) { project ->
             annotationProcessor 'org.projectlombok:lombok'
         }
 
+        java {
+            withSourcesJar()
+        }
+
         test {
             useJUnitPlatform()
         }
+
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    version "$version"
+                    from components.java
+                    versionMapping {
+                        usage('java-api') {
+                            fromResolutionOf('runtimeClasspath')
+                        }
+                        usage('java-runtime') {
+                            fromResolutionResult()
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }
