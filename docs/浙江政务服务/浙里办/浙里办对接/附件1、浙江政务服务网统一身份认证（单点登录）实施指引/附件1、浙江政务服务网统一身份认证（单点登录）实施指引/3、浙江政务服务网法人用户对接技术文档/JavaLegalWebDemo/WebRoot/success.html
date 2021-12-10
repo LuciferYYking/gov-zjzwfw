@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>法人单点登录Demo</title>
+<link rel="stylesheet" media="screen" href="./css/styles.css" rel="external nofollow" >
+<link rel="stylesheet" href="./css/dialog.css">
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/dialog.js"></script>
+<script type="text/javascript" src="./js/service.js"></script>
+<script type="text/javascript">	
+  var thisURL = document.URL;  
+  var  getUrlVal =thisURL.split('?')[1];  
+  var para = getUrlVal.split("&");
+  var len = para.length;  
+  
+  function  getData(){  
+	 var arr = [];
+	 for(var i=0;i<len;i++){
+        arr = para[i].split("=");
+		var dd = arr[0]; 
+		document.getElementById(decodeURI(arr[0])).value=decodeURI(arr[1]);  
+    }
+  } 
+</script>
+</head>
+<body onload="getData()" >
+	<form class="contact_form" action="" method="post" name="contact_form">
+		<ul>
+			<li>
+				 <h2>法人单点登录成功页面</h2>
+			</li>
+			<li>
+				<label for="companyName">企业名称：</label>
+				<input type="text" name="companyName" id="companyName" value = "" />
+			</li>
+			<li>
+				<label for="userId">政务服务网账号唯一标识UserId：</label>
+				<input type="text" name="userId" id="userId" value = "" />
+			</li>
+			<li>
+				说明：法人登录成功，若gotoUrl有值，应先将userid与现有的账号绑定，然后跳转到具体的办事事项，否则跳转系统首页
+			</li>
+		</ul>
+	</form>
+</body>
+</html>

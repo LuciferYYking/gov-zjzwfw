@@ -1,0 +1,15 @@
+zjzwfw:
+  app:
+    access-key: ycjb
+    secret-key: ycjbpwd
+    auth-url: https://appapi.zjzwfw.gov.cn/sso/servlet/simpleauth
+  irs:
+    access-key: abc
+    secret-key: abc
+    base-url: http://192.168.17.121:30852/mock/11
+  ding:
+    access-key: yichujiban-5h14OQO9uH7MlJneqQz
+    secret-key: OXA12q4F1l2m2OAf4m3i05R51w942dsY88ds11CE
+    domain-name: openplatform.dg-work.cn
+    protocol: https
+

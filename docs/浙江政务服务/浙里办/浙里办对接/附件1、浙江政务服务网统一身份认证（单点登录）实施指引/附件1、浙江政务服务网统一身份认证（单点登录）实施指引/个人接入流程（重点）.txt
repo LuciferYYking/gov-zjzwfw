@@ -1,0 +1,35 @@
+接入开发工作：
+需应用系统开发一个回调地址，该地址需要提供给易和公司，配置在政务服务网个人用户认证管理后台。
+该地址主要起到两个作用，1、接收个人用户中心的认证参数（如票据 ticket）;2、单点登录成功之后默认跳转到该地址。
+地址示例如：http://[ip]:[port]/[app]/test.jsp
+获取票据：
+（1）首先是使用浙江政务服务网统一登陆地址https://puser.zjzwfw.gov.cn/sso/usp.do?action=ssoLogin&servicecode=【接入代码】登陆，登陆的时候个人用户中心会主动将票据以post或者以get方式传到接入系统提供的回调地址上面，收到票据之后使用ticketValidation方法（见附录一:1.票据认证）将票据和其他参数传到接口进行票据认证。
+（2）票据认证通过之后接入系统接收token参数和一部分用户数据，然后是调用getUserInfo方法将接收到的票据传到我们接口认证，认证通过之后接收用户详细信息并接收sp参数。   
+（3）sp地址是指应用系统单点登录成功之后如不想跳转到配置在个人中心的回调地址上面，则可以将最终的跳转地址以goto参数写在登陆地址后面，个人中将会把该地址以sp参数回传给应用系统，应用系统需识别该参数并做跳转
+    票据认证需要调用的接口：
+        票据认证接口：
+            文档《SSO接口规范_公众.doc》4.2.1 票据认证
+            根据令牌获取用户信息接口:
+            文档《SSO接口规范_公众.doc》4.2.3 根据令牌获取用户信息
+二.登录和注册使用政务服务网的界面。
+PC入口
+登录地址：https://puser.zjzwfw.gov.cn/sso/usp.do?action=ssoLogin&servicecode=【接入代码】
+注册地址：https://puser.zjzwfw.gov.cn/sso/usp.do?action=register&servicecode=【接入代码】
+修改密码：https://puser.zjzwfw.gov.cn/sso/usp.do?action=editPwd&servicecode=【接入代码】
+忘记密码：https://puser.zjzwfw.gov.cn/sso/usp.do?action=forgotPwd&servicecode=【接入代码】
+支付宝入口
+登陆地址：https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=【接入代码】
+APP入口
+登录地址：https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=【接入代码】&goto=【附带跳转地址，以sp参数返回】
+备注：pc入口如果使用了政务网的页头和页尾，登录地址请使用：https://puser.zjzwfw.gov.cn/sso/usp.do?action=ssoLogin&servicecode=njdh&goto=http%3a%2f%2fpuser.zjzwfw.gov.cn%2fsso%2fusp.do%3faction%3dzfRedirect%26servicecode%3d【接入代码】
+参考文档4.2.1  票据认证
+接口地址：
+Webservice地址：https://appapi.zjzwfw.gov.cn/sso/service/SimpleAuthService?wsdl
+http地址：https://appapi.zjzwfw.gov.cn/sso/servlet/simpleauth? method=方法名&
+
+  杭州易和互联软件技术有限公司
+马筱赣
+联系电话：18360348649
+邮箱：maxg@commnetsoft.com
+QQ：1533091489
+公司地址：杭州市西湖区蒋村街道文一西路857号杭州智慧产业创业园B座403

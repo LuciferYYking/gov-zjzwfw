@@ -1,0 +1,73 @@
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+}
+
+ext {
+    set('httpclientVersion', '4.5.13')
+    set('fastjsonVersion', '1.2.78')
+    set('jodaVersion', '2.10.13')
+    set('commonsLang3Version', '3.12.0')
+    set('dingSdkVersion', '1.2.0')
+    set('irsSdkVersion', 'RELEASE20210929163439')
+}
+
+configure(allprojects) { project ->
+    apply plugin: 'io.spring.dependency-management'
+
+    group "com.shudazy.gov"
+
+    repositories {
+        mavenLocal()
+        maven {
+            allowInsecureProtocol true
+            url "http://192.168.17.121:31481/repository/maven-public/"
+        }
+        mavenCentral()
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+        resolutionStrategy.cacheDynamicVersionsFor 0, "seconds"
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+        dependencies {
+            dependency "org.apache.httpcomponents:httpclient:${httpclientVersion}"
+            dependency "org.apache.httpcomponents:httpmime:${httpclientVersion}"
+            dependency "org.apache.commons:commons-lang3:${commonsLang3Version}"
+            dependency "joda-time:joda-time:${jodaVersion}"
+            dependency "com.alibaba:fastjson:${fastjsonVersion}"
+            // 浙政钉 sdk
+            dependency "com.alibaba:zwdd-sdk-java:${dingSdkVersion}"
+            // IRS sdk
+            dependency "com.alibaba.gov:atg-sdk-java:${irsSdkVersion}"
+        }
+    }
+
+}
+
+configure(subprojects) { project ->
+
+    plugins.withType(JavaPlugin) {
+        configurations {
+            compileOnly {
+                extendsFrom annotationProcessor
+            }
+        }
+
+        dependencies {
+            implementation 'com.alibaba:fastjson'
+            compileOnly 'org.projectlombok:lombok'
+            annotationProcessor 'org.projectlombok:lombok'
+        }
+
+        test {
+            useJUnitPlatform()
+        }
+    }
+
+}

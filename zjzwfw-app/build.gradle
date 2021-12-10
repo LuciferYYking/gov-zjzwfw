@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+description("浙里办")
+
+dependencies {
+    implementation(
+            project(':zjzwfw-tool')
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}

@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-autoconfigure',
+            project(":zjzwfw-app"),
+            project(":zjzwfw-irs"),
+            project(":zjzwfw-ding"),
+            project(':zjzwfw-tool')
+    )
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}

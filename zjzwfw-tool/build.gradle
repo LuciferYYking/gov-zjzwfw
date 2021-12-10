@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation(
+            'org.apache.httpcomponents:httpclient',
+            'org.apache.httpcomponents:httpmime',
+            'org.springframework:spring-jcl'
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}

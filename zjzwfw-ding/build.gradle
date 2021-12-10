@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+description("浙政钉")
+
+dependencies {
+    implementation(
+            'com.alibaba:zwdd-sdk-java',
+            'joda-time:joda-time',
+            'org.apache.commons:commons-lang3',
+            project(':zjzwfw-tool')
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}

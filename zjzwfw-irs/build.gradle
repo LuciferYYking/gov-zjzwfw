@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+description("浙江统一资源数字化平台")
+
+dependencies {
+    implementation(
+            'com.alibaba.gov:atg-sdk-java',
+            project(':zjzwfw-tool')
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}

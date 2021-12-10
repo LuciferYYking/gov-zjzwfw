@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>法人单点登录Demo</title>
+<link rel="stylesheet" media="screen" href="./css/styles.css" rel="external nofollow" >
+<link rel="stylesheet" href="./css/dialog.css">
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/dialog.js"></script>
+<script type="text/javascript" src="./js/service.js"></script>
+<script type="text/javascript">	
+  var thisURL = document.URL;  
+  var  getUrlVal =thisURL.split('?')[1];  
+  var para = getUrlVal.split("&");
+  var len = para.length;  
+  
+  function  getData(){  
+	 var arr = [];
+	 for(var i=0;i<len;i++){
+        arr = para[i].split("=");
+		var dd = arr[0]; 
+		document.getElementById(decodeURI(arr[0])).value=decodeURI(arr[1]);  
+		}
+	} 
+  
+  function showMessage(tip,message){
+		javascript:$('body').dailog({type:'danger',title:tip,showBoxShadow:true,animateStyle:'none',bottons:['确定'],discription:message});
+	}
+
+</script>
+</head>
+<body onload="getData()" >
+	<form class="contact_form" action="" method="post" target="norefresh_iframe" name="contact_form">
+		<ul>
+			<li>
+				 <h2>绑定自建系统中已有账号</h2>
+			</li>
+			<li>
+				<label for="userId">政务服务网账号唯一标识UserId：</label>
+				<input type="text" name="userId" id="userId" value = "" />
+			</li>
+			<li>
+				<label for="companyName">企业名称：</label>
+				<input type="text" name="companyName" id="companyName" value = "" />
+			</li>
+			<li>
+				<label for="userName">自建系统中法人账号：</label>
+				<input type="text" name="userName" id="userName" value = "" placeholder="请填写法人在自建系统中的账号" />
+			</li>
+			<li>
+				<label for="userPassword">自建系统中法人账号密码：</label>
+				<input type="password" name="userPassword" id="userPassword" value = "" placeholder="请填写法人在自建系统中的账号密码" />
+			</li>
+			<li>
+				<button class="submit" type="submit" id="submit" onclick="javascrtpt:showMessage('绑定成功','此处为伪代码，具体绑定功能实现请以自建系统实际业务为准。')">绑定账号</button>
+				<span class="required_notification"><a href="javascript:void(0)" onclick="javascrtpt:showMessage('注册账号','此处为伪代码，具体注册功能实现请以自建系统实际业务为准。')">如在自建系统中尚未注册法人账号，请点击此处 注册账号</a></span>
+			</li>
+		</ul>
+	</form>
+	<iframe id="id_iframe" name="norefresh_iframe" style="display:none;"></iframe>    
+</body>
+</html>

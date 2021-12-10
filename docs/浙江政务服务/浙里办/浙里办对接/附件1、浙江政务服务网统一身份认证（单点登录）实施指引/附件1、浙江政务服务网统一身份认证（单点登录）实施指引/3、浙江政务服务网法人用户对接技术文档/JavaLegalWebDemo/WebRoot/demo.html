@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>法人单点登录Demo</title>
+<link rel="stylesheet" media="screen" href="./css/styles.css" rel="external nofollow" >
+<link rel="stylesheet" href="./css/dialog.css">
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/dialog.js"></script>
+<script type="text/javascript" src="./js/service.js"></script>
+</head>
+<body>
+	<form class="contact_form" action="" method="post" target="norefresh_iframe" name="contact_form">
+		<ul>
+			<li>
+				 <h2>法人单点登录Demo</h2>
+				 <span class="required_notification"><a href="javascript:showWarning()">重要提示</a></span>
+			</li>
+			<li>
+				<button class="submit" type="submit" id="submit" onclick="javascrtpt:doJump()">某某办事事项</button>
+			</li>
+		</ul>
+	</form>
+	<iframe id="id_iframe" name="norefresh_iframe" style="display:none;"></iframe>    
+</body>
+<script type="text/javascript">	
+// 模拟浙江政务服务网中的不同办事事项进行跳转
+function doJump(){
+ window.location.href="https://esso.zjzwfw.gov.cn/opensso/spsaehandler/metaAlias/sp?spappurl=http://localhost:8080/JavaLegalWebDemo/LegalServlet?goto=https://www.tsign.cn";
+}
+function showMessage(tip,message){
+	javascript:$('body').dailog({type:'danger',title:tip,showBoxShadow:true,animateStyle:'none',bottons:['确定'],discription:message});
+}
+function showWarning(){
+	javascript:$('body').dailog({type:'danger',title:'重要提示',showBoxShadow:true,animateStyle:'none',bottons:['确定'],discription:'1、本Demo是用来阐述API基本使用方法的,仅针对大众场景.供平台方接入参考,特殊情况还请平台方自行调整,确保符合平台方实际业务需求;<br>&emsp;2、法人登录成功后必须先判断是否已与自建系统中的账户进行关联;<br>&emsp;3、请以政务服务网账号唯一标识userId作为自建系统中账户的关联项;'});
+}
+</script>
+</html>
