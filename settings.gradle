@@ -1,5 +1,0 @@
-rootProject.name = 'poseidon'
-include 'poseidon-gradle'
-include 'poseidon-bom'
-include 'poseidon-commons'
-
