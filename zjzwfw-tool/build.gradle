@@ -6,7 +6,7 @@ dependencies {
     implementation(
             'org.apache.httpcomponents:httpclient',
             'org.apache.httpcomponents:httpmime',
-            'org.springframework:spring-jcl'
+            'commons-logging:commons-logging'
     )
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

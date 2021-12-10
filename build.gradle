@@ -7,6 +7,7 @@ ext {
     set('httpclientVersion', '4.5.13')
     set('fastjsonVersion', '1.2.78')
     set('jodaVersion', '2.10.13')
+    set('commonsLoggingVersion', '1.2')
     set('commonsLang3Version', '3.12.0')
     set('dingSdkVersion', '1.2.0')
     set('irsSdkVersion', 'RELEASE20210929163439')
@@ -39,6 +40,7 @@ configure(allprojects) { project ->
             dependency "org.apache.httpcomponents:httpclient:${httpclientVersion}"
             dependency "org.apache.httpcomponents:httpmime:${httpclientVersion}"
             dependency "org.apache.commons:commons-lang3:${commonsLang3Version}"
+            dependency "commons-logging:commons-logging:${commonsLoggingVersion}"
             dependency "joda-time:joda-time:${jodaVersion}"
             dependency "com.alibaba:fastjson:${fastjsonVersion}"
             // 浙政钉 sdk
