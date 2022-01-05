@@ -26,21 +26,21 @@ public class ZjzwfwAutoConfiguration {
     }
 
     @Bean
-//    @ConditionalOnProperty(name = "zjzwfw.app")
+    @ConditionalOnProperty(prefix = ClientConfig.PREFIX, name = ClientConfig.ENABLE_APP, havingValue = "true")
     public AppClient appClient(ZjzwfwProperties properties, SignableHttpClient httpClient) {
         ClientConfig config = properties.getApp();
         return new AppClient(config.getAuthUrl(), config.getAccessKey(), config.getSecretKey(), httpClient);
     }
 
     @Bean
-//    @ConditionalOnProperty(name = "zjzwfw.irs")
+    @ConditionalOnProperty(prefix = ClientConfig.PREFIX, name = ClientConfig.ENABLE_IRS, havingValue = "true")
     public IrsClient irsClient(ZjzwfwProperties properties, SignableHttpClient httpClient) {
         ClientConfig config = properties.getIrs();
         return new IrsClient(config.getBaseUrl(), config.getAccessKey(), config.getSecretKey(), httpClient);
     }
 
     @Bean
-//    @ConditionalOnProperty(name = "zjzwfw.ding")
+    @ConditionalOnProperty(prefix = ClientConfig.PREFIX, name = ClientConfig.ENABLE_DING, havingValue = "true")
     public DingClient dingClient(ZjzwfwProperties properties) {
         ClientConfig config = properties.getDing();
         return new DingClient(config.getAccessKey(), config.getSecretKey(), config.getDomainName(), config.getProtocol());

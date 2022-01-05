@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
+
 /**
  *
  * @author Bing D. Yee
@@ -22,13 +24,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = ZjzwfwAutoConfiguration.class)
 public class ZjzwfwTest {
 
-    @Autowired
+//    @Resource
     private AppClient appClient;
 
-    @Autowired
+    @Resource
     private IrsClient irsClient;
 
-    @Autowired
+//    @Resource
     private DingClient dingClient;
 
     @Test

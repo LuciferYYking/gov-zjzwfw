@@ -1,0 +1,102 @@
+{
+  "groups": [
+    {
+      "name": "zjzwfw",
+      "type": "com.shudazy.gov.ZjzwfwProperties",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zjzwfw.enable-app",
+      "defaultValue": "false",
+      "type": "java.lang.Boolean",
+      "description": "Enable Zhe Li Ban App Client."
+    },
+    {
+      "name": "zjzwfw.enable-irs",
+      "defaultValue": "false",
+      "type": "java.lang.Boolean",
+      "description": "Enable Zhe Jiang IRS Client."
+    },
+    {
+      "name": "zjzwfw.enable-ding",
+      "defaultValue": "false",
+      "type": "java.lang.Boolean",
+      "description": "Enable Ding Talk Client."
+    },
+    {
+      "name": "zjzwfw.app.access-key",
+      "type": "java.lang.String",
+      "description": "Access key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.app.secret-key",
+      "type": "java.lang.String",
+      "description": "Secret key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.app.auth-url",
+      "type": "java.lang.String",
+      "description": "Auth url.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.irs.access-key",
+      "type": "java.lang.String",
+      "description": "Access key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.irs.secret-key",
+      "type": "java.lang.String",
+      "description": "Secret key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.irs.base-url",
+      "type": "java.lang.String",
+      "description": "Base url.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.ding.access-key",
+      "type": "java.lang.String",
+      "description": "Access key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.ding.secret-key",
+      "type": "java.lang.String",
+      "description": "Secret key.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.ding.domain-name",
+      "type": "java.lang.String",
+      "description": "Domain name.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    },
+    {
+      "name": "zjzwfw.ding.protocol",
+      "type": "java.lang.String",
+      "description": "Http protocol.",
+      "sourceType": "com.shudazy.gov.ZjzwfwProperties"
+    }
+  ],
+  "hints": [
+    {
+      "name": "zjzwfw.ding.protocol",
+      "values": [
+        {
+          "value": "http"
+        },
+        {
+          "value": "https"
+        }
+      ]
+    }
+  ]
+}

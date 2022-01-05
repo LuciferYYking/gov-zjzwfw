@@ -13,13 +13,21 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "zjzwfw")
+@ConfigurationProperties(prefix = ClientConfig.PREFIX, ignoreInvalidFields = true)
 public class ZjzwfwProperties {
+
+    private Boolean enableApp;
+
+    private Boolean enableIrs;
+
+    private Boolean enableDing;
 
     /** 浙里办配置 */
     private ClientConfig app;
+
     /** IRS 配置 */
     private ClientConfig irs;
+
     /** 浙政钉配置 */
     private ClientConfig ding;
 

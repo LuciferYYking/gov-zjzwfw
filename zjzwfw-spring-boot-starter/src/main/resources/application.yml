@@ -1,4 +1,7 @@
 zjzwfw:
+  enable-app: false
+  enable-irs: false
+  enable-ding: false
   app:
     access-key: ycjb
     secret-key: ycjbpwd
@@ -12,4 +15,4 @@ zjzwfw:
     secret-key: OXA12q4F1l2m2OAf4m3i05R51w942dsY88ds11CE
     domain-name: openplatform.dg-work.cn
     protocol: https
-
+    

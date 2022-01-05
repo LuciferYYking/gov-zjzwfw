@@ -14,6 +14,15 @@ import lombok.ToString;
 @ToString
 public class ClientConfig {
 
+    public static final String PREFIX = "zjzwfw";
+
+    public static final String ENABLE_APP = "enable-app";
+
+    public static final String ENABLE_IRS = "enable-irs";
+
+    public static final String ENABLE_DING = "enable-ding";
+
+
     private String accessKey;
 
     private String secretKey;
